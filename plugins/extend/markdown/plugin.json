@@ -1,0 +1,22 @@
+{
+    "$schema": "../../../system/schema/extend.json",
+    "name": "Markdown",
+    "description": "Parsedown library integration for Markdown syntax (https://parsedown.org/)",
+    "version": "1.0.0",
+    "environment": {
+        "system": "^8.0"
+    },
+    "url": "https://sunlight-cms.cz",
+    "class": "MarkdownPlugin",
+    "langs": {
+        "markdown": "Resources/languages/"
+    },
+    "events": [
+        {"event": "post.parse", "method": "onPostParse"},
+        {"event": "tpl.content", "method": "onPageParse"}
+    ],
+    "events.web": [
+        {"event": "tpl.head", "method": "onHead"}
+    ],
+    "events.admin": []
+}
