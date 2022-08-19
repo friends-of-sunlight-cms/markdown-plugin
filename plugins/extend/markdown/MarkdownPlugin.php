@@ -4,10 +4,12 @@ namespace SunlightExtend\Markdown;
 
 use Parsedown;
 use Sunlight\Core;
+use Sunlight\Page\Page;
 use Sunlight\Plugin\Action\PluginAction;
 use Sunlight\Plugin\ExtendPlugin;
 use Sunlight\Settings;
 use Sunlight\Template;
+use Sunlight\WebState;
 
 class MarkdownPlugin extends ExtendPlugin
 {
@@ -32,7 +34,7 @@ class MarkdownPlugin extends ExtendPlugin
                 }
             }
 
-            $args['css'][] = $this->getWebPath() . '/Resources/css/github-markdown' . ($dark ? '-dark' : '-light') . '.css';
+            $args['css'][] = $this->getWebPath() . '/Resources/css/markdown' . ($dark ? '-dark' : '-light') . '.css';
         }
     }
 
@@ -40,13 +42,17 @@ class MarkdownPlugin extends ExtendPlugin
      * @sl-event post.parse
      * @param array $args
      */
-    public function onPostParse(array $args): void
+    public function onPostRender(array $args): void
     {
-        if (!$this->getConfig()['parse_posts']) {
+        $config = $this->getConfig();
+        if (!$config['parse_posts']) {
             return;
         }
-        //$args['nl2br'] = false;
-        $args['content'] = $this->parseMarkdown($args['content'], true);
+
+        $args['nl2br'] = false;
+        $args['bbcode'] = $config['parse_bbcodes'];
+
+        $args['input'] = $this->parseMarkdown($args['input'], true);
     }
 
     /**
@@ -55,7 +61,12 @@ class MarkdownPlugin extends ExtendPlugin
      */
     public function onPageParse(array $args): void
     {
-        if (!$this->getConfig()['parse_pages']) {
+        global $_index, $_page;
+
+        if (!$this->getConfig()['parse_pages']
+            || $_index->type !== WebState::PAGE
+            || $_page['type'] != Page::SECTION
+        ) {
             return;
         }
         $args['content'] = $this->parseMarkdown($args['content']);
@@ -69,7 +80,7 @@ class MarkdownPlugin extends ExtendPlugin
     private function parseMarkdown(string $content, bool $safeMode = false): string
     {
         $parsedown = new Parsedown();
-        if($safeMode){
+        if ($safeMode) {
             $parsedown->setSafeMode(true);
         }
         return '<div class="markdown-body">' . $parsedown->text($content) . '</div>';
@@ -81,6 +92,7 @@ class MarkdownPlugin extends ExtendPlugin
             'dark_mode' => 'null',
             'parse_pages' => true,
             'parse_posts' => false,
+            'parse_bbcodes' => false,
         ];
     }
 

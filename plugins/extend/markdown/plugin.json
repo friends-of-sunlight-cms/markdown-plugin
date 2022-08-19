@@ -6,13 +6,13 @@
     "environment": {
         "system": "^8.0"
     },
-    "url": "https://sunlight-cms.cz",
+    "url": "https://github.com/friends-of-sunlight-cms/",
     "class": "MarkdownPlugin",
     "langs": {
         "markdown": "Resources/languages/"
     },
     "events": [
-        {"event": "post.parse", "method": "onPostParse"},
+        {"event": "post.render", "method": "onPostRender"},
         {"event": "tpl.content", "method": "onPageParse"}
     ],
     "events.web": [

@@ -34,6 +34,11 @@ class ConfigAction extends BaseConfigAction
                 'input' => '<input type="checkbox" name="config[parse_pages]" value="1"' . Form::activateCheckbox($config->offsetGet('parse_pages')) . '>',
                 'type' => 'checkbox'
             ],
+            'parse_bbcodes' => [
+                'label' => _lang('markdown.cfg.parse_bbcodes'),
+                'input' => '<input type="checkbox" name="config[parse_bbcodes]" value="1"' . Form::activateCheckbox($config->offsetGet('parse_bbcodes')) . '>',
+                'type' => 'checkbox'
+            ],
 
         ];
     }

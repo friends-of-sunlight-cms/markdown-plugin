@@ -1,0 +1,178 @@
+.markdown-body {
+    line-height: 1.75;
+    padding: 16px 20px;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+
+}
+
+.markdown-body h1 + hr,
+.markdown-body h2 + hr,
+.markdown-body h3 + hr,
+.markdown-body h4 + hr,
+.markdown-body h5 + hr,
+.markdown-body h6 + hr {
+    margin-top: -8px;
+}
+
+.markdown-body p {
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+
+.markdown-body a {
+    text-decoration: none;
+}
+
+.markdown-body a:focus,
+.markdown-body a:hover,
+.markdown-body a:active {
+    text-decoration: underline;
+}
+
+.markdown-body a,
+.markdown-body ins,
+.markdown-body u {
+    -webkit-text-decoration-skip: ink edges;
+    text-decoration-skip: ink edges;
+}
+
+.markdown-body del + del,
+.markdown-body del + s,
+.markdown-body ins + ins,
+.markdown-body ins + u,
+.markdown-body s + del,
+.markdown-body s + s,
+.markdown-body u + ins,
+.markdown-body u + u {
+    margin-left: .125em;
+}
+
+.markdown-body hr {
+    background: #21262d;
+    border: none;
+    display: block;
+    height: 1px;
+    margin: 8px 0 24px;
+    overflow: hidden;
+}
+
+.markdown-body hr::after {
+    clear: both;
+    content: "";
+    display: table;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+    margin: 15px 0 15px 32px;
+    padding: 0;
+}
+
+.markdown-body ul ul,
+.markdown-body ol ul,
+.markdown-body ul ol,
+.markdown-body ol ol {
+    margin: 0 0 0 32px;
+}
+
+.markdown-body ul li,
+.markdown-body ol li {
+
+}
+
+.markdown-body ul {
+    list-style: disc inside;
+}
+
+.markdown-body ul ul {
+    list-style-type: circle;
+}
+
+.markdown-body ol {
+    list-style: decimal inside;
+}
+
+.markdown-body ol ol {
+    list-style-type: lower-alpha;
+}
+
+.markdown-body img {
+    border: 0;
+    height: auto;
+    max-width: 100%;
+}
+
+.markdown-body img + em {
+    color: #a1a1a1;
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+}
+
+.markdown-body blockquote {
+    background-color: #161b22;
+    border-left: 5px solid #21262d;
+    margin: 20px 0;
+    padding: 20px;
+}
+
+.markdown-body blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.markdown-body table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 32px 0;
+    text-align: left;
+    width: 100%;
+}
+
+.markdown-body table tbody tr:nth-of-type(odd) {
+    /*background: #fafafa;*/
+    background-color: #161b22;
+}
+
+.markdown-body table td,
+.markdown-body table th {
+    border-bottom: 1px solid #21262d;
+    padding: 8px 4px;
+}
+
+.markdown-body table th {
+    border-bottom-width: 2px;
+}
+
+.markdown-body code {
+    background-color: rgba(110,118,129,0.4);
+    padding: 1px 4px;
+    font-family: "SF Mono", "Segoe UI Mono", "Roboto Mono", Menlo, Courier, monospace;
+    font-size: 0.8rem;
+}
+
+.markdown-body pre {
+    background: #fafafa;
+    margin: 15px 0;
+    overflow-x: auto;
+}
+
+.markdown-body pre code {
+    background-color: #161b22;
+    color: inherit;
+    display: block;
+    line-height: inherit;
+    padding: 8px;
+}
+
+.markdown-body blockquote pre code {
+    background-color: #21262d;
+}
