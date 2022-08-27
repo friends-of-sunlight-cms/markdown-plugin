@@ -34,7 +34,7 @@ class MarkdownPlugin extends ExtendPlugin
                 }
             }
 
-            $args['css'][] = $this->getWebPath() . '/Resources/css/markdown' . ($dark ? '-dark' : '-light') . '.css';
+            $args['css'][] = $this->getWebPath() . '/resources/css/markdown' . ($dark ? '-dark' : '-light') . '.css';
         }
     }
 

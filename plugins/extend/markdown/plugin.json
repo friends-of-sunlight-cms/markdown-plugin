@@ -9,7 +9,7 @@
     "url": "https://github.com/friends-of-sunlight-cms/",
     "class": "MarkdownPlugin",
     "langs": {
-        "markdown": "Resources/languages/"
+        "markdown": "resources/languages/"
     },
     "events": [
         {"event": "post.render", "method": "onPostRender"},
