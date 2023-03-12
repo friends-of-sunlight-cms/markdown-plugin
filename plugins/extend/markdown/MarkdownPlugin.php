@@ -14,10 +14,6 @@ use Sunlight\WebState;
 class MarkdownPlugin extends ExtendPlugin
 {
 
-    /**
-     * @sl-event tpl.head
-     * @param array $args
-     */
     public function onHead(array $args): void
     {
         $config = $this->getConfig();
@@ -38,10 +34,6 @@ class MarkdownPlugin extends ExtendPlugin
         }
     }
 
-    /**
-     * @sl-event post.parse
-     * @param array $args
-     */
     public function onPostRender(array $args): void
     {
         $config = $this->getConfig();
@@ -55,10 +47,6 @@ class MarkdownPlugin extends ExtendPlugin
         $args['input'] = $this->parseMarkdown($args['input'], true);
     }
 
-    /**
-     * @sl-event tpl.content
-     * @param array $args
-     */
     public function onPageParse(array $args): void
     {
         global $_index, $_page;
@@ -75,7 +63,6 @@ class MarkdownPlugin extends ExtendPlugin
     /**
      * @param string $content content for markdown parser
      * @param bool $safeMode processing untrusted user-input (escaping, ...)
-     * @return string
      */
     private function parseMarkdown(string $content, bool $safeMode = false): string
     {
@@ -85,6 +72,12 @@ class MarkdownPlugin extends ExtendPlugin
         }
         return '<div class="markdown-body">' . $parsedown->text($content) . '</div>';
     }
+
+    /**
+     * ============================================================================
+     *  EXTEND CONFIGURATION
+     * ============================================================================
+     */
 
     public function getConfigDefaults(): array
     {
