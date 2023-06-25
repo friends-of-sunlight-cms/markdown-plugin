@@ -41,7 +41,6 @@ class MarkdownPlugin extends ExtendPlugin
             return;
         }
         $args['page']['content'] = $this->parseMarkdown($args['page']['content']);
-        dump($args);
     }
 
     /**
