@@ -14,8 +14,7 @@
         "markdown": "lang"
     },
     "events": [
-        {"event": "post.render", "method": "onPostRender"},
-        {"event": "tpl.content", "method": "onPageParse"}
+        {"event": "page.all.before", "method": "onPageParse", "priority": 10}
     ],
     "events.web": [
         {"event": "tpl.head", "method": "onHead"}

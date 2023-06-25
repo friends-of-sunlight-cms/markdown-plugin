@@ -24,29 +24,17 @@ class ConfigAction extends BaseConfigAction
                     </select>
                     <?php }),
             ],
-            'parse_posts' => [
-                'label' => _lang('markdown.cfg.parse_posts'),
-                'input' => '<input type="checkbox" name="config[parse_posts]" value="1"' . Form::activateCheckbox($config->offsetGet('parse_posts')) . '>',
-                'type' => 'checkbox'
-            ],
             'parse_pages' => [
                 'label' => _lang('markdown.cfg.parse_pages'),
                 'input' => '<input type="checkbox" name="config[parse_pages]" value="1"' . Form::activateCheckbox($config->offsetGet('parse_pages')) . '>',
                 'type' => 'checkbox'
             ],
-            'parse_bbcodes' => [
-                'label' => _lang('markdown.cfg.parse_bbcodes'),
-                'input' => '<input type="checkbox" name="config[parse_bbcodes]" value="1"' . Form::activateCheckbox($config->offsetGet('parse_bbcodes')) . '>',
-                'type' => 'checkbox'
-            ],
-
         ];
     }
 
     protected function mapSubmittedValue(ConfigurationFile $config, string $key, array $field, $value): ?string
     {
-        switch ($key) {
-            case 'dark_mode':
+        if($key === 'dark_mode') {
                 $config[$key] = ($value === '' ? null : (bool) $value);
                 return null;
         }

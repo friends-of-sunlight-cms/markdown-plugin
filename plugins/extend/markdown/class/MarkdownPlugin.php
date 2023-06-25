@@ -13,38 +13,21 @@ use Sunlight\WebState;
 
 class MarkdownPlugin extends ExtendPlugin
 {
-
     public function onHead(array $args): void
     {
         $config = $this->getConfig();
 
-        // Register CSS only if parsing is enabled for at least one type.
-        if ($config['parse_posts'] || $config['parse_pages']) {
-            $dark = $config['dark_mode'];
+        $dark = $config['dark_mode'];
 
-            if ($dark === null) {
-                if (Core::$env === Core::ENV_ADMIN) {
-                    $dark = Settings::get('adminscheme_dark');
-                } else {
-                    $dark = Template::getCurrent()->getOption('dark');
-                }
+        if ($dark === null) {
+            if (Core::$env === Core::ENV_ADMIN) {
+                $dark = Settings::get('adminscheme_dark');
+            } else {
+                $dark = Template::getCurrent()->getOption('dark');
             }
-
-            $args['css'][] = $this->getWebPath() . '/public/css/markdown' . ($dark ? '-dark' : '-light') . '.css';
-        }
-    }
-
-    public function onPostRender(array $args): void
-    {
-        $config = $this->getConfig();
-        if (!$config['parse_posts']) {
-            return;
         }
 
-        $args['nl2br'] = false;
-        $args['bbcode'] = $config['parse_bbcodes'];
-
-        $args['input'] = $this->parseMarkdown($args['input'], true);
+        $args['css'][] = $this->getAssetPath('public/css/markdown-' . ($dark ? 'dark' : 'light') . '.css');
     }
 
     public function onPageParse(array $args): void
@@ -57,11 +40,12 @@ class MarkdownPlugin extends ExtendPlugin
         ) {
             return;
         }
-        $args['content'] = $this->parseMarkdown($args['content']);
+        $args['page']['content'] = $this->parseMarkdown($args['page']['content']);
+        dump($args);
     }
 
     /**
-     * @param string $content content for markdown parser
+     * @param string $content content for Markdown parser
      * @param bool $safeMode processing untrusted user-input (escaping, ...)
      */
     private function parseMarkdown(string $content, bool $safeMode = false): string
@@ -82,10 +66,8 @@ class MarkdownPlugin extends ExtendPlugin
     public function getConfigDefaults(): array
     {
         return [
-            'dark_mode' => 'null',
+            'dark_mode' => null,
             'parse_pages' => true,
-            'parse_posts' => false,
-            'parse_bbcodes' => false,
         ];
     }
 
@@ -96,5 +78,4 @@ class MarkdownPlugin extends ExtendPlugin
         }
         return parent::getAction($name);
     }
-
 }
