@@ -55,26 +55,4 @@ class MarkdownPlugin extends ExtendPlugin
         }
         return '<div class="markdown-body">' . $parsedown->text($content) . '</div>';
     }
-
-    /**
-     * ============================================================================
-     *  EXTEND CONFIGURATION
-     * ============================================================================
-     */
-
-    public function getConfigDefaults(): array
-    {
-        return [
-            'dark_mode' => null,
-            'parse_pages' => true,
-        ];
-    }
-
-    function getAction(string $name): ?PluginAction
-    {
-        if ($name === 'config') {
-            return new ConfigAction($this);
-        }
-        return parent::getAction($name);
-    }
 }
