@@ -5,7 +5,6 @@ namespace SunlightExtend\Markdown;
 use Parsedown;
 use Sunlight\Core;
 use Sunlight\Page\Page;
-use Sunlight\Plugin\Action\PluginAction;
 use Sunlight\Plugin\ExtendPlugin;
 use Sunlight\Settings;
 use Sunlight\Template;

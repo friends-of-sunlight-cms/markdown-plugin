@@ -2,10 +2,10 @@
 
 namespace SunlightExtend\Markdown;
 
+use Fosc\Feature\Plugin\Config\FieldGenerator;
 use Sunlight\Plugin\Action\ConfigAction as BaseConfigAction;
 use Sunlight\Util\ConfigurationFile;
 use Sunlight\Util\Form;
-use Sunlight\Util\Json;
 
 class ConfigAction extends BaseConfigAction
 {
@@ -13,30 +13,31 @@ class ConfigAction extends BaseConfigAction
     {
         $config = $this->plugin->getConfig();
 
-        return [
+        $langPrefix = "%p:markdown.config";
+
+        $gen = new FieldGenerator($this->plugin);
+        $gen->field([
             'dark_mode' => [
-                'label' => _lang('markdown.cfg.dark_mode'),
+                'label' => _lang('markdown.config.dark_mode'),
                 'input' => _buffer(function () use ($config) { ?>
                     <select name="config[dark_mode]">
-                        <option value="" <?= $config['dark_mode'] === null ? ' selected' : '' ?>><?= _lang('lightbox.cfg.dark_mode.auto') ?></option>
-                        <option value="1" <?= $config['dark_mode'] === true ? ' selected' : '' ?>><?= _lang('global.yes') ?></option>
-                        <option value="0" <?= $config['dark_mode'] === false ? ' selected' : '' ?>><?= _lang('global.no') ?></option>
+                        <option value="" <?= Form::selectOption($config['dark_mode'] === null) ?>><?= _lang('markdown.config.dark_mode.auto') ?></option>
+                        <option value="1" <?= Form::selectOption($config['dark_mode'] === true) ?>><?= _lang('global.yes') ?></option>
+                        <option value="0" <?= Form::selectOption($config['dark_mode'] === false) ?>><?= _lang('global.no') ?></option>
                     </select>
-                    <?php }),
-            ],
-            'parse_pages' => [
-                'label' => _lang('markdown.cfg.parse_pages'),
-                'input' => '<input type="checkbox" name="config[parse_pages]" value="1"' . Form::activateCheckbox($config->offsetGet('parse_pages')) . '>',
-                'type' => 'checkbox'
-            ],
-        ];
+                <?php })
+            ]
+        ])
+            ->generateField('parse_pages', $langPrefix, '%checkbox');
+
+        return $gen->getFields();
     }
 
     protected function mapSubmittedValue(ConfigurationFile $config, string $key, array $field, $value): ?string
     {
-        if($key === 'dark_mode') {
-                $config[$key] = ($value === '' ? null : (bool) $value);
-                return null;
+        if ($key === 'dark_mode') {
+            $config[$key] = ($value === '' ? null : (bool)$value);
+            return null;
         }
 
         return parent::mapSubmittedValue($config, $key, $field, $value);

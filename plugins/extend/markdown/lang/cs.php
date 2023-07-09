@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'cfg.dark_mode' => 'Tmavý režim',
-    'cfg.dark_mode.auto' => 'dle motivu',
-    'cfg.parse_posts' => 'Parsovat příspěvky',
-    'cfg.parse_pages' => 'Parsovat stránky',
-    'cfg.parse_bbcodes' => 'Parsovat BBCode'
+    'config.dark_mode' => 'Tmavý režim',
+    'config.dark_mode.auto' => 'dle motivu',
+    'config.parse_posts' => 'Parsovat příspěvky',
+    'config.parse_pages' => 'Parsovat stránky',
+    'config.parse_bbcodes' => 'Parsovat BBCode'
 ];
