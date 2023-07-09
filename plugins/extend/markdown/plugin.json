@@ -1,33 +1,33 @@
 {
-  "$schema": "../../../system/schema/extend.json",
-  "name": "Markdown",
-  "description": "Parsedown library integration for Markdown syntax (https://parsedown.org/)",
-  "version": "0.9.2",
-  "environment": {
-    "system": "^8.0"
-  },
-  "dependencies": {
-    "fosc-lib": ">=0.9.2"
-  },
-  "authors": [
-    {"name": "Friends of Sunlight CMS", "url": "https://github.com/friends-of-sunlight-cms/"}
-  ],
-  "class": "MarkdownPlugin",
-  "config_defaults": {
-    "dark_mode": null,
-    "parse_pages": true
-  },
-  "actions": {
-    "config": "ConfigAction"
-  },
-  "langs": {
-    "markdown": "lang"
-  },
-  "events": [
-    {"event": "page.all.before", "method": "onPageParse", "priority": 10}
-  ],
-  "events.web": [
-    {"event": "tpl.head", "method": "onHead"}
-  ],
-  "events.admin": []
+    "$schema": "../../../system/schema/extend.json",
+    "name": "Markdown",
+    "description": "Parsedown library integration for Markdown syntax (https://parsedown.org/)",
+    "version": "0.9.2",
+    "environment": {
+        "system": "^8.0"
+    },
+    "dependencies": {
+        "fosc-lib": ">=0.9.2"
+    },
+    "authors": [
+        {"name": "Friends of Sunlight CMS", "url": "https://github.com/friends-of-sunlight-cms/"}
+    ],
+    "class": "MarkdownPlugin",
+    "config_defaults": {
+        "dark_mode": null,
+        "parse_pages": true
+    },
+    "actions": {
+        "config": "ConfigAction"
+    },
+    "langs": {
+        "markdown": "lang"
+    },
+    "events": [
+        {"event": "page.all.before", "method": "onPageParse", "priority": 10}
+    ],
+    "events.web": [
+        {"event": "tpl.head", "method": "onHead"}
+    ],
+    "events.admin": []
 }
